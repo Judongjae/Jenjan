@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Judongjae/Jenjan#readme",
   "dependencies": {
     "dotenv": "^16.0.0",
+    "ejs": "^3.1.7",
     "express": "^4.18.0",
     "gitignore": "^0.7.0",
     "mysql": "^2.18.1",
