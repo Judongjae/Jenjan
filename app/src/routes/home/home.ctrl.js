@@ -8,7 +8,8 @@ const output = {
 };
 const process = {
   login: (req, res) => {
-    const { name } = req.query;
+    const { name } = req.body;
+    console.log(`hello ${name}`);
     res.send(`hello ${name}`);
   },
 };
