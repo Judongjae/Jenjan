@@ -1,11 +1,10 @@
 const express = require("express");
 const dotenv = require("dotenv");
-// const morgan = require("morgan");
-// const logger = require("");
 const app = express();
+const home = require("./src/routes/home");
+
 dotenv.config();
 
-app.set("views", "./src/views"); //view 엔진경로
-app.set("view engine", "ejs");
+app.use("/", home);
 
 module.exports = app;
