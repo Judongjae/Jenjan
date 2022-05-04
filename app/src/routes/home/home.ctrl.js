@@ -6,11 +6,12 @@ const output = {
     res.send("login");
   },
 };
+
 const process = {
   login: (req, res) => {
     const { name } = req.body;
-    console.log(`hello ${name}`);
-    res.send(`hello ${name}`);
+    console.log(`${name}`);
+    res.send(`${name}`);
   },
 };
 
