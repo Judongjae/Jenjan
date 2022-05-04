@@ -1,3 +1,6 @@
+const db = require("../../config/db");
+const sql = "INSERT INTO practice(yy) VALUES('yoyo')";
+
 const output = {
   home: (req, res) => {
     res.send("home");
@@ -9,9 +12,9 @@ const output = {
 
 const process = {
   login: (req, res) => {
-    const { name } = req.body;
-    console.log(`${name}`);
-    res.send(`${name}`);
+    const { yy } = req.body;
+    console.log(`${yy}`);
+    res.send(`${yy}`);
   },
 };
 
