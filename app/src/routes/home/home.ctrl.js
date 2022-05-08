@@ -17,12 +17,12 @@ const process = {
   login: async (req, res) => {
     const user = new UserStorage(req.body);
     const reponse = await user.login();
-    return res.json(response);
+    return res.json("login");
   },
   register: async (req, res) => {
     const user = new UserStorage(req.body);
     const reponse = await user.register();
-    return res.json(response);
+    return res.json("register");
   },
 };
 

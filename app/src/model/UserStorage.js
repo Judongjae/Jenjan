@@ -4,14 +4,27 @@ class User {
   constructor(body) {
     this.body = body;
   }
+  async login() {
+    try {
+      return new Promise((resolve, reject) => {
+        const query = "select * from practice;";
+        db.query(query, (err, data) => {
+          if (err) reject(`${err}`);
+          else resolve(data);
+        });
+      });
+    } catch {}
+  }
+
   async register() {
     const client = this.body; //여기가 문제인데
     try {
       return new Promise((resolve, reject) => {
-        const query = "INSERT INTO practice(yy) VALUES (?);";
-        db.query(query, (err, data) => {
+        const query = "insert into practice(yy) values (?);";
+        db.query(query, [client.yy], (err, data) => {
           if (err) reject(`${err}`);
           else resolve({ success: true });
+          console.log(data);
         });
       });
     } catch (err) {}
