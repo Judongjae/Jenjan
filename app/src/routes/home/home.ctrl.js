@@ -7,9 +7,12 @@ const output = {
     res.send("home");
   },
   login: (req, res) => {
-    return new Promise((res, rej) => {
-      const query = "SELECT * FROM practice;";
+try{}
+    return new Promise((resolve, reject) => {
+      const query = "select * from practice;";
       db.query(query, (err, data) => {
+        if (err) reject(`${err}`);
+        else resolve({ success: true });
         console.log(data);
       });
     });
