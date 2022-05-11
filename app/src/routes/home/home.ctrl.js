@@ -1,12 +1,12 @@
 const db = require("../../config/db");
-const UserStorage = require("../../model/UserStorage");
+const User = require("../../model/User");
 
 const output = {
   home: (req, res) => {
     res.send("home");
   },
   login: (req, res) => {
-    db.query("SELECT * FROM practice;", (err, data) => {
+    db.query("SELECT * FROM user;", (err, data) => {
       console.log(data);
       res.send(data);
     });
@@ -15,12 +15,12 @@ const output = {
 
 const process = {
   login: async (req, res) => {
-    const user = new UserStorage(req.body);
+    const user = new User(req.body);
     const reponse = await user.login();
     return res.json("login");
   },
   register: async (req, res) => {
-    const user = new UserStorage(req.body);
+    const user = new User(req.body);
     const reponse = await user.register();
     return res.json("register");
   },
