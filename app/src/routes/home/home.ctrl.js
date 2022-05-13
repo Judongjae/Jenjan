@@ -1,4 +1,5 @@
 const db = require("../../config/db");
+const url = require("url");
 const User = require("../../model/User");
 const Post = require("../../model/Post");
 
@@ -19,9 +20,9 @@ const output = {
     });
   },
   onepost: (req, res) => {
-    const url = request.url;
-    console.log(url);
-    db.query("SELECT * FROM board where id=?;", [], (err, data) => {
+    const idx = req.params.idx;
+    console.log(idx);
+    db.query("SELECT * FROM board where idx=?;", [idx], (err, data) => {
       console.log(data);
       res.send(data);
     });
