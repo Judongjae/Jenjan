@@ -1,4 +1,5 @@
-const db = require("../config/db");
+const UserStorage = require("./UserStorage");
+const bcrypt = require("bcrypt");
 
 class User {
   constructor(body) {
@@ -7,24 +8,18 @@ class User {
   async login() {
     const client = this.body; //내가 포스트맨으로 넣은 값
     try {
-      return new Promise((resolve, reject) => {
-        const query = "select * from user where id = ?;";
-        db.query(query, [client.id], (err, data) => {
-          //11번줄의 id가 12번줄의 client.id이다.
-          const id = data[0].id;
-          const password = data[0].password;
-          console.log(client.id, client.password);
-          // console.log(id, password);
-          if (id === client.id && password === client.password) {
-            console.log("id랑 password맞음");
-            resolve("성공");
-            return { success: true, msg: "맞음" };
-          }
-          reject("실패");
-          return { success: false, msg: "비밀번호가 틀립니다." };
-        });
-      });
+      const { id, password } = await UserStorage.login(client.id);
+      const check = bcrypt.compare(client.password, password);
+      console.log(check);
+      if (check) {
+        console.log(check);
+        console.log("로그인성공");
+        return { success: true };
+      }
+      console.log("비밀번호 틀림");
+      return { success: false };
     } catch (err) {
+      console.log("에러뜸");
       return { success: false, err };
     }
   }
@@ -32,18 +27,8 @@ class User {
   async register() {
     const client = this.body;
     try {
-      return new Promise((resolve, reject) => {
-        const query = "insert into user(id, password, name) values (?, ?, ?);";
-        db.query(
-          query,
-          [client.id, client.password, client.name],
-          (err, data) => {
-            if (err) reject(`${err}`);
-            else resolve({ success: true });
-            console.log(data);
-          }
-        );
-      });
+      const response = await UserStorage.save(client);
+      return response;
     } catch (err) {
       return { success: false, err };
     }
