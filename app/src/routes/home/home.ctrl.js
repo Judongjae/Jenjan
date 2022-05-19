@@ -7,7 +7,6 @@ const Comment = require("../../model/Comment");
 
 const output = {
   home: (req, res) => {
-    res.cookie("cookietv", "set cookie");
     console.log(req.cookies);
     res.send("home");
   },
@@ -64,7 +63,7 @@ const process = {
     return res.json("게시글작성");
   },
   comment: async (req, res) => {
-    const comment = new Post(req.body);
+    const comment = new Comment(req.body);
     const response = await comment.comment();
     return res.json("댓글작성");
   },

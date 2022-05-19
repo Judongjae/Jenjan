@@ -7,6 +7,7 @@ class CommentStorage {
     return new Promise((resolve, reject) => {
       const query =
         "INSERT INTO comments (writer, boardidx, content) VALUES (?,?,?);";
+
       db.query(
         query,
         [commentInfo.writer, commentInfo.boardidx, commentInfo.content],
