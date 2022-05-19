@@ -5,6 +5,8 @@ const Comment = require("../../model/Comment");
 
 const output = {
   home: (req, res) => {
+    res.cookie("cookietv", "set cookie");
+    console.log(req.cookies);
     res.send("home");
   },
   login: (req, res) => {
