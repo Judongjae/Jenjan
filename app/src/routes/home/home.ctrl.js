@@ -1,3 +1,5 @@
+"use strict";
+
 const db = require("../../config/db");
 const User = require("../../model/User");
 const Post = require("../../model/Post");

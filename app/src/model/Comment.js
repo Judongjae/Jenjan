@@ -1,3 +1,5 @@
+"use strict";
+
 const CommentStorage = require("./CommentStorage");
 
 class Comments {

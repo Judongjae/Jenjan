@@ -1,3 +1,5 @@
+"use strict";
+
 const UserStorage = require("./UserStorage");
 const bcrypt = require("bcrypt");
 
