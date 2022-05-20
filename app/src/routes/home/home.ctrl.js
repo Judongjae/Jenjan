@@ -6,11 +6,13 @@ const Post = require("../../model/Post");
 const Comment = require("../../model/Comment");
 
 const output = {
-  home: (req, res) => {
-    console.log(req.cookies);
-    res.send("home");
+  house: (req, res) => {
+    res.render("home/home");
   },
   login: (req, res) => {
+    res.render("home/login");
+  },
+  users: (req, res) => {
     db.query("SELECT * FROM user;", (err, data) => {
       console.log(data);
       res.send(data);

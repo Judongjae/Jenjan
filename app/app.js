@@ -1,16 +1,18 @@
 "use strict";
 
+//모듈
 const express = require("express");
 const dotenv = require("dotenv");
 const session = require("express-session");
 const passport = require("passport");
-// const passportConfig = require('./passport')
 const app = express();
 
 dotenv.config();
-
+//라우팅
 const home = require("./src/routes/home");
-// const res = require("express/lib/response");
+
+app.set("views", "./src/views");
+app.set("view engine", "ejs");
 
 app.use(
   session({ secret: "비밀코드", resave: true, saveUninitialized: false })
@@ -24,21 +26,8 @@ app.use(
     extended: true,
   })
 );
+app.use(express.static(`${__dirname}/src/public`));
+//dirname은 현재 app.js파일이 있는 위치를 반환한다. 이건 왜 필요하지?
 app.use("/", home);
-
-const cookieConfig = {
-  maxAge: 3,
-};
-
-// 쿠키설정
-app.get("/set", (req, res) => {
-  res.cookie("key", "value", cookieConfig);
-  res.send("set cookie");
-});
-
-//쿠키 확인
-app.get("/get", (req, res) => {
-  res.send(req.cookies);
-});
 
 module.exports = app;
