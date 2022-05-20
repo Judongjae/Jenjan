@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/js/home/login.js"></script>
+    <script src="/js/home/login.js" defer></script>
     <!-- public이라는 폴더를 만들어서 js/home/login.js를 모두 넣은 이유는 이렇게해야 윗줄에서 js/home/login.js를 찾을 수 있기 때문이라고 하더라 -->
+    <!-- login.ejs에서 js 폴더로 접근을 하면 public안의 js폴더로 들어간다. -->
     <title>login</title>
   </head>
   <body>
-    <input type="text" placeholder="아이디" /><br />
-    <input type="text" placeholder="비밀번호" /><br />
+    <input id="id" type="text" placeholder="아이디" /><br />
+    <input id="password" type="text" placeholder="비밀번호" /><br />
     <button>로그인</button>
   </body>
 </html>

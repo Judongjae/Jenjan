@@ -1,26 +1,21 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-//const Users=
+const bcrypt = require(bcrypt);
+const db = require("../config/db");
+const UserStorage = require("./UserStorage");
 
 module.exports = () => {
-  passport.serializeUser((user, done) => {
-    done(null, user);
-  });
-
-  passport.deserializeUser((user, done) => {
-    done(null, user);
-  });
-
   passport.use(
     new LocalStrategy(
       {
         usernameField: "id",
-        passwordField: "pw",
+        passwordField: "password",
         session: true,
         passReqToCallback: false,
       },
-      async (id, pw, done) => {
+      async (id, password, done) => {
         try {
+          console.log(id);
           const query = "select * from user where id = ?;";
           db.query(query, [id], (err, data) => {
             if (err) return done(err);
@@ -40,4 +35,11 @@ module.exports = () => {
       }
     )
   );
+  passport.serializeUser((user, done) => {
+    done(null, user);
+  });
+
+  passport.deserializeUser((user, done) => {
+    done(null, user);
+  });
 };

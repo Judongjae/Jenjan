@@ -27,7 +27,8 @@ app.use(
   })
 );
 app.use(express.static(`${__dirname}/src/public`));
-//dirname은 현재 app.js파일이 있는 위치를 반환한다. 이건 왜 필요하지?
+//dirname은 현재 app.js파일이 있는 위치를 반환한다.
+//위치 안에 있는 src 안의 public폴더라는 뜻
 app.use("/", home);
 
 module.exports = app;

@@ -13,7 +13,7 @@ const output = {
     res.render("home/login");
   },
   users: (req, res) => {
-    db.query("SELECT * FROM user;", (err, data) => {
+    db.query("SELECT * FROM users;", (err, data) => {
       console.log(data);
       res.send(data);
     });
