@@ -9,10 +9,11 @@ class User {
     const client = this.body; //내가 포스트맨으로 넣은 값
     try {
       const { id, password } = await UserStorage.login(client.id);
-      const check = bcrypt.compare(client.password, password);
+      const check = await bcrypt.compare(client.password, password);
+      console.log(password);
+      console.log(client.password);
       console.log(check);
       if (check) {
-        console.log(check);
         console.log("로그인성공");
         return { success: true };
       }
