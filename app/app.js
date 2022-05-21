@@ -17,8 +17,8 @@ app.set("view engine", "ejs");
 app.use(
   session({ secret: "비밀코드", resave: true, saveUninitialized: false })
 ); //세션 활성화
-app.use(passport.initialize()); // passport 구동
-app.use(passport.session()); //세션 연결
+app.use(passport.initialize()); // passport를 사용한다고 express에게 알린다.
+app.use(passport.session()); //session을 사용하여 passport를 동작시킨다고 express에게 알린다.
 // passportConfig()
 app.use(express.json());
 app.use(
