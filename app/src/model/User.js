@@ -10,9 +10,6 @@ class User {
     try {
       const { id, password } = await UserStorage.login(client.id);
       const check = await bcrypt.compare(client.password, password);
-      console.log(password);
-      console.log(client.password);
-      console.log(check);
       if (check) {
         console.log("로그인성공");
         return { success: true };

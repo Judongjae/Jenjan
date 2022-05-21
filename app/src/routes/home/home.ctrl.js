@@ -26,7 +26,6 @@ const output = {
   },
   post: (req, res) => {
     const idx = req.params.idx;
-    console.log(idx);
     db.query("SELECT * FROM board where idx=?;", [idx], (err, data) => {
       console.log(data);
       res.send(data);
