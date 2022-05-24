@@ -51,7 +51,9 @@ const process = {
   login: async (req, res) => {
     const user = new User(req.body);
     const reponse = await user.login();
-    return res.json("로그인");
+    const token = user.login.token;
+    console.log(user.login.token);
+    return res.json({ message: "토큰이발급되었습니다.", token: token });
   },
   register: async (req, res) => {
     const user = new User(req.body);

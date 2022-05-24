@@ -1,5 +1,6 @@
 const UserStorage = require("./UserStorage");
 const bcrypt = require("bcrypt");
+const jwtToken = require("jsonwebtoken");
 
 class User {
   constructor(body) {
@@ -12,7 +13,10 @@ class User {
       const check = await bcrypt.compare(client.password, password);
       if (check) {
         console.log("로그인성공");
-        return { success: true };
+        const token = jwtToken.sign(id, "secretkey"); //토큰발급
+        console.log(token);
+
+        return { success: true, token };
       }
       console.log("비밀번호 틀림");
       return { success: false };
