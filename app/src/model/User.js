@@ -23,7 +23,7 @@ class User {
     } catch (err) {
       console.log("에러뜸");
       return { success: false, err };
-    }
+    } //
   }
 
   async register() {
